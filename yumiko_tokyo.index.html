@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>YUMIKO - TOKYO FC | Official Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Oswald:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff0000;
+      --primary-dark: #8b0000;
+      --bg-dark: #050505;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --text-gray: #b0b0b0;
+      --accent-glow: rgba(255, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Фоновый эффект */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, #1a0000 0%, #050505 100%);
+      z-index: -1;
+    }
+
+    /* Header & Hero */
+    header {
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                  url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=1920') center/cover;
+      text-align: center;
+      border-bottom: 4px solid var(--primary);
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(40px, 8vw, 80px);
+      text-transform: uppercase;
+      text-shadow: 0 0 20px var(--primary);
+      margin-bottom: 10px;
+      animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      border-bottom: 1px solid #333;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: 0.3s;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary);
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 10%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 32px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-transform: uppercase;
+    }
+
+    h2::after {
+      content: "";
+      height: 3px;
+      flex-grow: 1;
+      background: linear-gradient(90deg, var(--primary), transparent);
+    }
+
+    /* Cards & Grid */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(5px);
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.4s transform ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px var(--accent-glow);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    /* Stats Table */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 15px;
+      background: var(--card-bg);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    th {
+      background: var(--primary-dark);
+      color: white;
+      text-transform: uppercase;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    td {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+    }
+
+    tr:hover {
+      background: rgba(255, 0, 0, 0.1);
+    }
+
+    /* Kit Visual */
+    .kit-box {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .kit-item {
+      text-align: center;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .kit-color {
+      height: 150px;
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-kit { background: linear-gradient(45deg, #000 50%, #ff0000 50%); }
+    .away-kit { background: linear-gradient(45deg, #ff0000 50%, #000 50%); }
+    .gk-kit { background: #333; }
+
+    /* Badge */
+    .badge {
+      background: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 15px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 50px;
+      text-align: center;
+      background: #000;
+      border-top: 1px solid #222;
+    }
+
+    /* Animations */
+    @keyframes tracking-in-expand {
+      0% { letter-spacing: -0.5em; opacity: 0; }
+      40% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      nav { flex-wrap: wrap; gap: 10px; }
+      section { padding: 40px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <p style="letter-spacing: 5px; color: var(--primary);">EST. 2024</p>
+  <h1>YUMIKO TOKYO</h1>
+  <p style="font-size: 1.2rem; opacity: 0.8;">The Future of Japanese Football</p>
+</header>
+
+<nav>
+  <a href="#about">О клубе</a>
+  <a href="#founders">Создатели</a>
+  <a href="#kit">Форма</a>
+  <a href="#league">Лига</a>
+  <a href="#matches">Матчи</a>
+  <a href="#stats">Статистика</a>
+</nav>
+
+<section id="about">
+  <h2>О клубе</h2>
+  <div class="card" style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 300px;">
+      <p style="font-size: 1.1rem; color: var(--text-gray);">
+        YUMIKO - TOKYO FC — это не просто футбольный клуб. Это идеология скорости и безупречной техники, зародившаяся в самом сердце Японии. Наша миссия — находить таланты и превращать их в легенд мирового уровня.
+      </p>
+      <span class="badge">PRO CLUB</span>
+    </div>
+    <div style="flex: 1; text-align: center;">
+        <div style="font-size: 60px; color: var(--primary); font-weight: bold;">03.</div>
+        <p>Место в региональном рейтинге</p>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="founders">
+  <h2>Создатели</h2>
+  <div class="grid">
+    <div class="card">
+      <small style="color: var(--primary);">PRESIDENT</small>
+      <h3 style="font-size: 24px;">Yumiko Tanaka</h3>
+      <p style="color: var(--text-gray);">Визионер и основатель системы подготовки.</p>
+    </div>
+    <div class="card">
+      <small style="color: var(--primary);">HEAD COACH</small>
+      <h3 style="font-size: 24px;">Kenji Nakamura</h3>
+      <p style="color: var(--text-gray);">Тактический гений с 20-летним стажем.</p>
+    </div>
+    <div class="card">
+      <small style="color: var(--primary);">DIRECTOR</small>
+      <h3 style="font-size: 24px;">Hiroshi Sato</h3>
+      <p style="color: var(--text-gray);">Эксперт по развитию молодежной академии.</p>
+    </div>
+  </div>
+</section>
+
+<section id="kit">
+  <h2>Экипировка 25/26</h2>
+  <div class="kit-box">
+    <div class="kit-item">
+      <div class="kit-color home-kit"></div>
+      <h4>Домашняя</h4>
+      <p>Midnight Red</p>
+    </div>
+    <div class="kit-item">
+      <div class="kit-color away-kit"></div>
+      <h4>Гостевая</h4>
+      <p>Crimson Black</p>
+    </div>
+    <div class="kit-item">
+      <div class="kit-color gk-kit"></div>
+      <h4>Вратарская</h4>
+      <p>Shadow Grey</p>
+    </div>
+  </div>
+</section>
+
+<section id="matches">
+  <h2>Последние результаты</h2>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Соперник</th>
+          <th>Стадион</th>
+          <th>Счет</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>12.01.2026</td>
+          <td style="font-weight: bold;">Osaka United</td>
+          <td>Tokyo Arena</td>
+          <td style="color: #00ff00;">2 : 1 (W)</td>
+        </tr>
+        <tr>
+          <td>19.01.2026</td>
+          <td style="font-weight: bold;">Kyoto Stars</td>
+          <td>Kyoto Stadium</td>
+          <td style="color: #ffaa00;">1 : 1 (D)</td>
+        </tr>
+        <tr>
+          <td>26.01.2026</td>
+          <td style="font-weight: bold;">Nagoya FC</td>
+          <td>Tokyo Arena</td>
+          <td style="color: #00ff00;">3 : 0 (W)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="stats">
+  <h2>Топ игроков</h2>
+  <div class="grid">
+    <div class="card" style="text-align: center;">
+        <h3 style="color: var(--primary);">Akira Yamamoto</h3>
+        <p>FW | 8 Голов</p>
+        <div style="height: 5px; background: #333; margin-top: 10px;"><div style="width: 85%; background: var(--primary); height: 100%;"></div></div>
+    </div>
+    <div class="card" style="text-align: center;">
+        <h3 style="color: var(--primary);">Arn Milor</h3>
+        <p>MF | 6 Ассистов</p>
+        <div style="height: 5px; background: #333; margin-top: 10px;"><div style="width: 70%; background: var(--primary); height: 100%;"></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h2 style="justify-content: center; border: none;">YUMIKO FC</h2>
+  <p>© 2026 Official Club Website. All rights reserved.</p>
+  <div style="margin-top: 20px; font-size: 20px; color: var(--primary);">
+    ⚽ 🏆 🇯🇵
+  </div>
+</footer>
+
+</body>
+</html>
